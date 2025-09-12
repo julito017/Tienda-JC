@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Producto = ({ nombre, precio, imagen, descripcion }) => {
+const Producto = ({ nombre, precio, imagen, descripcion, onAddToCart }) => {
+  const [added, setAdded] = useState(false);
+
   const agregarAlCarrito = () => {
-    alert(`"${nombre}" agregado al carrito ✅`);
+    onAddToCart({
+      nombre,
+      precio: parseFloat(precio),
+      imagen,
+      descripcion
+    });
+    
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
   };
 
   return (
@@ -11,8 +21,11 @@ const Producto = ({ nombre, precio, imagen, descripcion }) => {
       <h3>{nombre}</h3>
       <p>{descripcion}</p>
       <span className="precio">S/ {precio}</span>
-      <button className="btn-agregar" onClick={agregarAlCarrito}>
-        Agregar al carrito
+      <button 
+        className={`btn-agregar ${added ? 'added' : ''}`} 
+        onClick={agregarAlCarrito}
+      >
+        {added ? '✓ Agregado' : 'Agregar al carrito'}
       </button>
     </div>
   );

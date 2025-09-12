@@ -1,7 +1,7 @@
 import React from 'react';
 import Producto from '../components/Producto';
 
-const Productos = () => {
+const Productos = ({ onAddToCart }) => {
   const productos = [
     {
       nombre: "Arroz Premium",
@@ -76,6 +76,7 @@ const Productos = () => {
             precio={producto.precio}
             imagen={producto.imagen}
             descripcion={producto.descripcion}
+            onAddToCart={onAddToCart}
           />
         ))}
       </section>

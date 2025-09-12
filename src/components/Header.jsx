@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ cartItemsCount = 0 }) => {
   const location = useLocation();
 
   return (
@@ -27,6 +27,11 @@ const Header = () => {
           <li>
             <Link to="/acerca" className={location.pathname === '/acerca' ? 'activo' : ''}>
               Acerca de
+            </Link>
+          </li>
+          <li>
+            <Link to="/carrito" className={location.pathname === '/carrito' ? 'activo' : ''}>
+              🛒 Carrito {cartItemsCount > 0 && <span className="cart-count">({cartItemsCount})</span>}
             </Link>
           </li>
         </ul>
